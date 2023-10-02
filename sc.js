@@ -1,15 +1,30 @@
-// Define your quiz data
+
 const quizData = [
   {
-    question: "What is the capital of France?",
-    options: ["Paris", "London", "Berlin", "Madrid"],
-    correctAnswer: "Paris"
+    question: "How can a datatype be declared to be a constant type in Javascript?",
+    options: ["var", "let", "const", "constant"],
+    correctAnswer: "const"
   },
-  // Add more questions here
   {
-    question: "What is the capital of India?",
-    options: ["Paris", "Delhi", "Berlin", "Madrid"],
-    correctAnswer: "Delhi",
+    question: "What keyword is used to check whether a given property is valid or not in Javascript?",
+    options: ["in", "is in", "exists", "lies"],
+    correctAnswer: "in"
+  },
+  {
+    question: "Who developed Python Programming",
+    options: ["Wick van Rossum", "Rasmus Lerdorf", "Guido van Rossum", "Niene Stom"],
+    correctAnswer: "Guido van Rossum"
+  },
+  {
+    question: "Which of the following is the correct extension of the python file?",
+    options: [".python", ".pl", ".py", ".p"],
+    correctAnswer: ".py"
+  },
+  
+  {
+    question: "which keyword is used for function in python language?",
+    options: ["Function", "def", "Fun", "Define"],
+    correctAnswer: "def",
     timeLimit: 10, // Set the time limit for this question (in seconds)
   },
 ];
@@ -19,16 +34,13 @@ let score = 0;
 let timer;
 const timeLimit = 10; // Default time limit for questions in seconds
 
-// Function to load the current question
+
 function loadQuestion() {
   const questionContainer = document.getElementById("question-container");
   const question = quizData[currentQuestion].question;
   const options = quizData[currentQuestion].options;
 
-  // Dynamically insert question and answer options into the HTML
-  // You can use a loop to create answer buttons
-
-  // Example:
+  
   questionContainer.innerHTML = `
     <p id="question">Question ${currentQuestion + 1}: ${question}</p>
     <ul id="answers">
@@ -39,12 +51,12 @@ function loadQuestion() {
     </ul>
   `;
 
-  // Reset timer
+  
   clearInterval(timer);
   startTimer();
 }
 
-// Function to start the timer
+
 function startTimer() {
   let timeRemaining = quizData[currentQuestion].timeLimit || timeLimit;
 
@@ -60,7 +72,7 @@ function startTimer() {
   }, 1000);
 }
 
-// Function to check the selected answer
+
 function checkAnswer(selectedOption) {
   const correctAnswer = quizData[currentQuestion].correctAnswer;
   const resultContainer = document.getElementById("result");
@@ -72,47 +84,46 @@ function checkAnswer(selectedOption) {
     resultContainer.textContent = "Incorrect!";
   }
 
-  // Disable answer buttons after selection
+ 
   const answerButtons = document.querySelectorAll("#answers button");
   answerButtons.forEach(button => {
     button.disabled = true;
   });
 
-  // Stop the timer
+  
   clearInterval(timer);
 
-  // Show the next button
+  
   document.getElementById("next-btn").style.display = "block";
 }
 
-// Function to move to the next question
 function nextQuestion() {
   const resultContainer = document.getElementById("result");
 
-  // Clear previous result and enable answer buttons
+  
   resultContainer.textContent = "";
   const answerButtons = document.querySelectorAll("#answers button");
   answerButtons.forEach(button => {
     button.disabled = false;
   });
 
-  // Hide the next button until the next question is loaded
+  
   document.getElementById("next-btn").style.display = "none";
 
   currentQuestion++;
 
-  // Check if the quiz is completed
+
   if (currentQuestion < quizData.length) {
     loadQuestion();
   } else {
     // Display the final score when the quiz is completed
     document.getElementById("question-container").innerHTML = `<p id="final-score">Your Final Score: ${score}/${quizData.length}</p>`;
     
-    // Show restart button
+ 
     const restartButton = document.createElement("button");
     restartButton.textContent = "Restart Quiz";
     restartButton.onclick = function() {
-      // Reset variables and load the first question
+ 
       currentQuestion = 0;
       score = 0;
       loadQuestion();
@@ -121,5 +132,5 @@ function nextQuestion() {
   }
 }
 
-// Initial load
+
 loadQuestion();
