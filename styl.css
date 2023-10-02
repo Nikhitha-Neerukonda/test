@@ -1,4 +1,4 @@
-/* Reset some default styles */
+
 body, h1, ul, li, button {
     margin: 0;
     padding: 0;
@@ -117,12 +117,12 @@ body, h1, ul, li, button {
     margin-top: 30px;
   }
   
-  /* Add a smooth transition to the result message */
+  
   #result {
     transition: color 0.3s;
   }
   
-  /* Style restart button */
+  
   button#restart-btn {
     background-color: #4caf50;
     margin-top: 20px;
